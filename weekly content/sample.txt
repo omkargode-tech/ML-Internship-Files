@@ -1,0 +1,5 @@
+Hello World
+Welcome to Python File Handling
+This is a sample text file
+We are learning read and write operations
+Python is powerful and simple
