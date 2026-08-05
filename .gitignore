@@ -1,0 +1,12 @@
+# Virtual environments
+myenv/
+
+# Python cache
+weekly-content/__pycache__/
+
+
+# IDEs
+weekly-content/.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
