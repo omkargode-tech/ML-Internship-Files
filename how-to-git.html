@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Complete Git Workflow&colon; From Local Project to GitHub</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <span id="markdown-mermaid" aria-hidden="true" data-config="{&quot;darkModeTheme&quot;:&quot;vscode&quot;,&quot;lightModeTheme&quot;:&quot;vscode&quot;,&quot;maxTextSize&quot;:50000,&quot;clickDrag&quot;:&quot;alt&quot;,&quot;showControls&quot;:&quot;onHoverOrFocus&quot;,&quot;resizable&quot;:true,&quot;maxHeight&quot;:&quot;&quot;}"></span>
+				<h1 id="complete-git-workflow-from-local-project-to-github">Complete Git Workflow: From Local Project to GitHub</h1>
+<h2 id="step-1-initialize-git-only-once">Step 1: Initialize Git (only once)</h2>
+<p>Navigate to your project folder:</p>
+<pre><code class="language-bash"><span class="hljs-built_in">cd</span> path/to/your/project
+</code></pre>
+<p>Initialize Git:</p>
+<pre><code class="language-bash">git init
+</code></pre>
+<p>Check the status:</p>
+<pre><code class="language-bash">git status
+</code></pre>
+<hr>
+<h2 id="step-2-stage-files">Step 2: Stage Files</h2>
+<p>Add all files to Git:</p>
+<pre><code class="language-bash">git add .
+</code></pre>
+<p>Or add a specific file:</p>
+<pre><code class="language-bash">git add filename.py
+</code></pre>
+<hr>
+<h2 id="step-3-commit">Step 3: Commit</h2>
+<p>Create your first commit:</p>
+<pre><code class="language-bash">git commit -m <span class="hljs-string">&quot;Initial commit&quot;</span>
+</code></pre>
+<hr>
+<h2 id="step-4-create-a-github-repository">Step 4: Create a GitHub Repository</h2>
+<ol>
+<li>Go to <a href="https://github.com">https://github.com</a></li>
+<li>Click <strong>New Repository</strong></li>
+<li>Enter a repository name.</li>
+<li>Choose Public or Private.</li>
+<li>If your local project already has commits, <strong>do not initialize the repository with a README, .gitignore, or LICENSE</strong>.</li>
+<li>Click <strong>Create Repository</strong>.</li>
+</ol>
+<hr>
+<h2 id="step-5-get-the-repository-url">Step 5: Get the Repository URL</h2>
+<p>Open your repository.</p>
+<p>Click the green <strong>Code</strong> button.</p>
+<p>Copy either:</p>
+<p>HTTPS:</p>
+<pre><code class="language-text">https://github.com/username/repository.git
+</code></pre>
+<p>or SSH:</p>
+<pre><code class="language-text">git@github.com:username/repository.git
+</code></pre>
+<hr>
+<h2 id="step-6-connect-local-repository-to-github">Step 6: Connect Local Repository to GitHub</h2>
+<p>Using HTTPS:</p>
+<pre><code class="language-bash">git remote add origin https://github.com/username/repository.git
+</code></pre>
+<p>Verify:</p>
+<pre><code class="language-bash">git remote -v
+</code></pre>
+<p>Example:</p>
+<pre><code class="language-text">origin  https://github.com/username/repository.git (fetch)
+origin  https://github.com/username/repository.git (push)
+</code></pre>
+<hr>
+<h2 id="step-7-rename-branch-if-needed">Step 7: Rename Branch (if needed)</h2>
+<pre><code class="language-bash">git branch -M main
+</code></pre>
+<hr>
+<h2 id="step-8-push-to-github">Step 8: Push to GitHub</h2>
+<p>First push:</p>
+<pre><code class="language-bash">git push -u origin main
+</code></pre>
+<p>The <code>-u</code> option sets the upstream branch, so future pushes only require:</p>
+<pre><code class="language-bash">git push
+</code></pre>
+<hr>
+<h1 id="common-errors">Common Errors</h1>
+<h2 id="error-1">Error 1</h2>
+<pre><code>Authentication failed
+</code></pre>
+<h3 id="reason">Reason</h3>
+<p>GitHub no longer accepts your account password for Git operations over HTTPS.</p>
+<h3 id="solution-1-personal-access-token">Solution 1 (Personal Access Token)</h3>
+<p>Create a Personal Access Token (PAT) in your GitHub account.</p>
+<p>When Git asks:</p>
+<pre><code>Username:
+</code></pre>
+<p>Enter:</p>
+<pre><code>your GitHub username
+</code></pre>
+<p>When Git asks:</p>
+<pre><code>Password:
+</code></pre>
+<p>Paste your Personal Access Token instead of your GitHub password.</p>
+<hr>
+<h3 id="solution-2-ssh">Solution 2 (SSH)</h3>
+<p>Generate an SSH key:</p>
+<pre><code class="language-bash">ssh-keygen -t ed25519 -C <span class="hljs-string">&quot;your_email@example.com&quot;</span>
+</code></pre>
+<p>Start the SSH agent:</p>
+<pre><code class="language-bash"><span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(ssh-agent -s)</span>&quot;</span>
+</code></pre>
+<p>Add the key:</p>
+<pre><code class="language-bash">ssh-add ~/.ssh/id_ed25519
+</code></pre>
+<p>Display your public key:</p>
+<pre><code class="language-bash"><span class="hljs-built_in">cat</span> ~/.ssh/id_ed25519.pub
+</code></pre>
+<p>Copy the output.</p>
+<p>Go to GitHub:</p>
+<p>Settings → SSH and GPG Keys → New SSH Key</p>
+<p>Paste the copied key.</p>
+<p>Test:</p>
+<pre><code class="language-bash">ssh -T git@github.com
+</code></pre>
+<p>If successful, change your remote:</p>
+<pre><code class="language-bash">git remote set-url origin git@github.com:username/repository.git
+</code></pre>
+<hr>
+<h2 id="error-2">Error 2</h2>
+<pre><code>remote origin already exists
+</code></pre>
+<p>Check the current remote:</p>
+<pre><code class="language-bash">git remote -v
+</code></pre>
+<p>Change it:</p>
+<pre><code class="language-bash">git remote set-url origin https://github.com/username/repository.git
+</code></pre>
+<p>Or remove and add again:</p>
+<pre><code class="language-bash">git remote remove origin
+git remote add origin https://github.com/username/repository.git
+</code></pre>
+<hr>
+<h2 id="error-3">Error 3</h2>
+<pre><code>! [rejected] main -&gt; main (fetch first)
+failed to push some refs
+</code></pre>
+<h3 id="reason-1">Reason</h3>
+<p>The remote repository already contains commits (for example, a README created on GitHub).</p>
+<h3 id="solution">Solution</h3>
+<p>Pull the remote changes:</p>
+<pre><code class="language-bash">git pull origin main --allow-unrelated-histories
+</code></pre>
+<p>If there are merge conflicts, resolve them, then:</p>
+<pre><code class="language-bash">git add .
+git commit
+git push
+</code></pre>
+<hr>
+<h3 id="if-you-want-to-completely-replace-the-remote-repository">If you want to completely replace the remote repository</h3>
+<p>Only if you're sure you don't need the current contents on GitHub:</p>
+<pre><code class="language-bash">git push -u origin main --force
+</code></pre>
+<p><strong>Warning:</strong> This overwrites the remote branch.</p>
+<hr>
+<h1 id="daily-workflow-after-initial-setup">Daily Workflow (After Initial Setup)</h1>
+<p>Whenever you make changes:</p>
+<p>Check status:</p>
+<pre><code class="language-bash">git status
+</code></pre>
+<p>Stage changes:</p>
+<pre><code class="language-bash">git add .
+</code></pre>
+<p>Commit:</p>
+<pre><code class="language-bash">git commit -m <span class="hljs-string">&quot;Describe your changes&quot;</span>
+</code></pre>
+<p>Push:</p>
+<pre><code class="language-bash">git push
+</code></pre>
+<p>That's it.</p>
+<hr>
+<h1 id="if-someone-else-updated-the-repository">If Someone Else Updated the Repository</h1>
+<p>Download the latest changes:</p>
+<pre><code class="language-bash">git pull origin main
+</code></pre>
+<p>Then:</p>
+<pre><code class="language-bash">git add .
+git commit -m <span class="hljs-string">&quot;Your changes&quot;</span>
+git push
+</code></pre>
+<hr>
+<h1 id="useful-commands">Useful Commands</h1>
+<p>Initialize repository:</p>
+<pre><code class="language-bash">git init
+</code></pre>
+<p>Check status:</p>
+<pre><code class="language-bash">git status
+</code></pre>
+<p>Add all files:</p>
+<pre><code class="language-bash">git add .
+</code></pre>
+<p>Commit:</p>
+<pre><code class="language-bash">git commit -m <span class="hljs-string">&quot;Commit message&quot;</span>
+</code></pre>
+<p>View commit history:</p>
+<pre><code class="language-bash">git <span class="hljs-built_in">log</span>
+</code></pre>
+<p>View branches:</p>
+<pre><code class="language-bash">git branch
+</code></pre>
+<p>Rename branch to main:</p>
+<pre><code class="language-bash">git branch -M main
+</code></pre>
+<p>View remotes:</p>
+<pre><code class="language-bash">git remote -v
+</code></pre>
+<p>Add remote:</p>
+<pre><code class="language-bash">git remote add origin https://github.com/username/repository.git
+</code></pre>
+<p>Change remote URL:</p>
+<pre><code class="language-bash">git remote set-url origin https://github.com/username/repository.git
+</code></pre>
+<p>Remove remote:</p>
+<pre><code class="language-bash">git remote remove origin
+</code></pre>
+<p>Pull latest changes:</p>
+<pre><code class="language-bash">git pull origin main
+</code></pre>
+<p>Push changes:</p>
+<pre><code class="language-bash">git push
+</code></pre>
+<p>First push:</p>
+<pre><code class="language-bash">git push -u origin main
+</code></pre>
+<p>Force push (use with caution):</p>
+<pre><code class="language-bash">git push --force
+</code></pre>
+<hr>
+<h1 id="complete-example">Complete Example</h1>
+<pre><code class="language-bash"><span class="hljs-comment"># Go to your project</span>
+<span class="hljs-built_in">cd</span> myproject
+
+<span class="hljs-comment"># Initialize Git</span>
+git init
+
+<span class="hljs-comment"># Add files</span>
+git add .
+
+<span class="hljs-comment"># First commit</span>
+git commit -m <span class="hljs-string">&quot;Initial commit&quot;</span>
+
+<span class="hljs-comment"># Rename branch</span>
+git branch -M main
+
+<span class="hljs-comment"># Add GitHub repository</span>
+git remote add origin https://github.com/username/myproject.git
+
+<span class="hljs-comment"># First push</span>
+git push -u origin main
+
+<span class="hljs-comment"># ----------------------------</span>
+<span class="hljs-comment"># Daily workflow</span>
+<span class="hljs-comment"># ----------------------------</span>
+
+<span class="hljs-comment"># Edit files</span>
+
+git status
+git add .
+git commit -m <span class="hljs-string">&quot;Updated project&quot;</span>
+git push
+</code></pre>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
+        </body>
+        </html>
